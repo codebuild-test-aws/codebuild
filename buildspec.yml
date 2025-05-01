@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 534124683477.dkr.ecr.ap-south-1.amazonaws.com
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t hello-codebuild .
+      - docker tag hello-codebuild:latest 534124683477.dkr.ecr.ap-south-1.amazonaws.com/hello-codebuild:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push 534124683477.dkr.ecr.ap-south-1.amazonaws.com/hello-codebuild:latest
+
+artifacts:
+  files: []
