@@ -4,6 +4,7 @@ pipeline {
     environment {
         AWS_REGION = 'us-east-1'
         CODEBUILD_PROJECT = 'hello-codebuild'
+        AWS_CLI_PATH='/opt/homebrew/bin/aws'
     }
 
     stages {
